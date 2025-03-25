@@ -1,5 +1,5 @@
 app_name = "custom_app"
-app_title = "naming"
+app_title = "Rejith"
 app_publisher = "rejith"
 app_description = "naming app"
 app_email = "rejith@elina.so"
@@ -144,6 +144,11 @@ app_license = "agpl-3.0"
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Item": {
+        "before_insert": "custom_app.custom_script.autoname"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -241,4 +246,3 @@ app_license = "agpl-3.0"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
