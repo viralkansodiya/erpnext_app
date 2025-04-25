@@ -5,12 +5,12 @@ def autoname(doc, method):
         parent_group = frappe.get_value(
             "Item Group", 
             group_name, 
-            ["parent_item_group", "item_group_abbr"], 
+            ["parent_item_group", "custom_abbreviation"], 
             as_dict=True
         )
         # If we found a group and it has an abbreviation
-        if parent_group and parent_group.get("item_group_abbr"):
-            abbr_list.insert(0, parent_group["item_group_abbr"])
+        if parent_group and parent_group.get("custom_abbreviation"):
+            abbr_list.insert(0, parent_group["custom_abbreviation"])
             # Recursively fetch the next parent
             if parent_group.get("parent_item_group"):
                 abbr_list = fetch_parents(parent_group["parent_item_group"], abbr_list)
@@ -23,13 +23,13 @@ def autoname(doc, method):
     item_group_info = frappe.get_value(
         "Item Group", 
         doc.item_group, 
-        ["parent_item_group", "item_group_abbr"], 
+        ["parent_item_group", "custom_abbreviation"], 
         as_dict=True
     )
 
     # 3. Add the current group’s abbreviation (if any)
-    if item_group_info and item_group_info.get("item_group_abbr"):
-        abbr_list.insert(0, item_group_info["item_group_abbr"])
+    if item_group_info and item_group_info.get("custom_abbreviation"):
+        abbr_list.insert(0, item_group_info["custom_abbreviation"])
 
     # 4. If there’s a parent, recursively fetch parent groups
     if item_group_info and item_group_info.get("parent_item_group"):
