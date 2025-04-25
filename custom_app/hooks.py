@@ -1,8 +1,8 @@
 app_name = "custom_app"
-app_title = "SKU Creator"
+app_title = "Rejith"
 app_publisher = "rejith"
-app_description = "naming app"
-app_email = "rejith@elina.so"
+app_description = "Naming App"
+app_email = "rejithr1995@gmail.com"
 app_license = "agpl-3.0"
 
 # Apps
