@@ -1,5 +1,5 @@
 app_name = "custom_app"
-app_title = "Rejith"
+app_title = "SKU Creator"
 app_publisher = "rejith"
 app_description = "naming app"
 app_email = "rejith@elina.so"
