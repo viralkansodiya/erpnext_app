@@ -40,4 +40,4 @@ def autoname(doc, method):
     doc.naming_series = naming_series
 
     # 6. Generate the actual doc.name
-    doc.name = frappe.model.naming.make_autoname(naming_series)
+    doc.item_code = frappe.model.naming.make_autoname(naming_series)
