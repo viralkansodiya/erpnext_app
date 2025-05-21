@@ -38,6 +38,13 @@ def autoname(doc, method):
     # 5. Build naming series (e.g., PARENT-CHILD-.#####)
     naming_series = "-".join(abbr_list) + "-.####"
     doc.naming_series = naming_series
-
-    # 6. Generate the actual doc.name
-    doc.item_code = frappe.model.naming.make_autoname(naming_series)
+    if doc.variant_of:
+        variant_atr = []
+        for row in doc.attributes:
+            variant_atr.append(str(row.attribute_value))
+        variant_name = "-".join(variant_atr)
+        doc.item_code = doc.variant_of + "-" + variant_name
+        doc.name = doc.variant_of + "-" + variant_name
+    else:
+        # 6. Generate the actual doc.name
+        doc.item_code = frappe.model.naming.make_autoname(naming_series)
