@@ -38,7 +38,7 @@ app_license = "agpl-3.0"
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
-
+after_migrate = "custom_app.custom_field.setup_custom_fields"
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
