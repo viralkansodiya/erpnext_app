@@ -41,7 +41,14 @@ def autoname(doc, method):
     if doc.variant_of:
         variant_atr = []
         for row in doc.attributes:
-            variant_atr.append(str(row.attribute_value))
+            if frappe.db.get_value("Item Attribute", row.attribute, "numeric_values" ):
+                variant_atr.append(str(row.attribute_value))
+            else:
+                attr_doc = frappe.db.sql(f""" Select abbr From `tabItem Attribute Value` where parent = '{row.attribute}' and attribute_value = '{row.attribute_value}' """, as_dict=1)
+                if attr_doc[0].get("abbr"):
+                    variant_atr.append(str(attr_doc[0].get("abbr")))
+                else:
+                    variant_atr.append(str(row.attribute_value))
         variant_name = "-".join(variant_atr)
         doc.item_code = doc.variant_of + "-" + variant_name
         doc.name = doc.variant_of + "-" + variant_name
