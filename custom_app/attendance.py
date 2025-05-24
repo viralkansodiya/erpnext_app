@@ -8,21 +8,7 @@ from hrms.hr.doctype.employee_checkin.employee_checkin import add_log_based_on_e
 @frappe.whitelist(allow_guest=1)
 def get_attendance_log():
     try:
-        args = {
-            "RealTime": {
-                "AuthToken": "SDh9qzYdP1OEjcVyyFaYUO5PANDgJgAM",
-                "LabelName": "CAMS-1 MAIN GATE BGC",
-                "OperationID": "iHcEolKNDXnFd",
-                "PunchLog": {
-                    "InputType": "Fingerprint",
-                    "LogTime": "2025-05-22 10:25:14 GMT +0530",
-                    "Type": "CheckOut",
-                    "UserId": "SY0040"
-                },
-                "SerialNumber": "CEJE202360159",
-                "Time": "2025-05-24 08:03:40 GMT +0000"
-            }
-        }
+        args = frappe.request.json
         if not args:
             frappe.throw(_("Missing request body."))
 
