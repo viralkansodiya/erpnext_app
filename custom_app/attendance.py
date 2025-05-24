@@ -69,6 +69,9 @@ def get_attendance_log():
             ["name", "employee_name"],
             as_dict=True,
         )
+        if not employee and frappe.db.exists("Employee", employee_field_value):
+            frappe.db.set_value("Employee", employee_field_value, "attendance_device_id", employee_field_value)
+            frappe.db.commit()
 
         if not employee:
             frappe.throw(
