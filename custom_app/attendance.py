@@ -4,7 +4,7 @@ from frappe.utils import cint
 from datetime import datetime
 from hrms.hr.doctype.employee_checkin.employee_checkin import add_log_based_on_employee_field
 
-
+# custom_app.attendance.get_attendance_log
 @frappe.whitelist(allow_guest=1)
 def get_attendance_log():
     try:
@@ -31,7 +31,7 @@ def get_attendance_log():
         employee_field_value = punch_log.get("UserId")
         logtime = punch_log.get("LogTime")
         device_id = log.get("SerialNumber")
-        action_type = punch_log.get("Action")  # Assuming 'Action' instead of 'UserId' for type
+        action_type = punch_log.get("Type")  # Assuming 'Action' instead of 'UserId' for type
 
         if not (employee_field_value and logtime and device_id and action_type):
             frappe.throw(_("Missing one of the required fields: UserId, LogTime, SerialNumber, Action."))
