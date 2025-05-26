@@ -23,10 +23,10 @@ def get_attendance_log():
         # Create Integration Request with initial status
         integration_request = frappe.get_doc({
             "doctype": "Integration Request",
-            "integration_type": "Remote",
+            "integration_request_service": "Attendance Log",
             "reference_doctype": "Employee Checkin",
             "status": "Queued",
-            "data": frappe.as_json(log),
+            "output": str(log),
         })
         integration_request.insert(ignore_permissions=True)
 
