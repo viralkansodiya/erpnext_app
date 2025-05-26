@@ -98,7 +98,7 @@ def get_attendance_log():
 
         # Mark Integration Request as Completed
         integration_request.db_set("status", "Completed")
-        integration_request.db_set("reference_name", doc.name)
+        integration_request.db_set("reference_docname", doc.name)
 
         return {"success": "done"}
 
