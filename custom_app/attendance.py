@@ -86,7 +86,7 @@ def get_attendance_log():
         doc.insert(ignore_permissions=True)
         frappe.db.commit()
 
-        return {"success": "done"}
+        return {"status": "done"}
 
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), _("Attendance Log Error"))
