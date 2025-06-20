@@ -34,7 +34,20 @@ app_license = "agpl-3.0"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "custom_app/public/scss/website"
-
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["module", "=", "Elina"]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["module", "=", "Elina"]
+        ]
+    }
+]
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
@@ -129,9 +142,9 @@ after_migrate = "custom_app.custom_field.setup_custom_fields"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Shipping Rule": "custom_app.doc_events.shipping_rule.CustomShippingRule"
+}
 
 # Document Events
 # ---------------
