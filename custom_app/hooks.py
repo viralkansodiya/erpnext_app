@@ -34,16 +34,31 @@ app_license = "agpl-3.0"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "custom_app/public/scss/website"
-
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["module", "=", "Elina"]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["module", "=", "Elina"]
+        ]
+    }
+]
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
 # webform_include_css = {"doctype": "public/css/doctype.css"}
-
+after_migrate = "custom_app.custom_field.setup_custom_fields"
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Quotation" : "public/js/quotation.js"
+    }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -129,9 +144,9 @@ app_license = "agpl-3.0"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Shipping Rule": "custom_app.doc_events.shipping_rule.CustomShippingRule"
+}
 
 # Document Events
 # ---------------
@@ -147,6 +162,9 @@ app_license = "agpl-3.0"
 doc_events = {
     "Item": {
         "before_insert": "custom_app.custom_script.autoname"
+    },
+    "Quotation": {
+        "validate": "custom_app.doc_events.quotation.validate"
     }
 }
 
