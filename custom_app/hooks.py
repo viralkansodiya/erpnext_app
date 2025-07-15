@@ -56,7 +56,9 @@ after_migrate = "custom_app.custom_field.setup_custom_fields"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Quotation" : "public/js/quotation.js"
+    }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -160,6 +162,9 @@ override_doctype_class = {
 doc_events = {
     "Item": {
         "before_insert": "custom_app.custom_script.autoname"
+    },
+    "Quotation": {
+        "validate": "custom_app.doc_events.quotation.validate"
     }
 }
 
