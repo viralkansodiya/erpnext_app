@@ -18,7 +18,7 @@ def apply_item_tax_template(doc):
     max_tax = 0
     max_tax_template = None
     for row in doc.items:
-        if not frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item') and row.item_tax_template:
+        if not frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
             applied_tax = row.igst_rate + row.cgst_rate + row.sgst_rate
             if applied_tax > max_tax:
                 max_tax = applied_tax
@@ -44,3 +44,16 @@ def get_service_item_rate(doc, percentage, item_code):
 
     return total_amount * flt(percentage) / 100
     
+
+
+def before_insert(self, method):
+    apply_item_tax_template(self)
+    total_amount = 0
+    for row in self.items:
+        if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
+            continue
+        total_amount += row.get("amount")
+    
+    for row in self.items:
+        if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
+            row.rate = total_amount * flt(row.percentage) / 100

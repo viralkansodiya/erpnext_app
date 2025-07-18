@@ -164,7 +164,8 @@ doc_events = {
         "before_insert": "custom_app.custom_script.autoname"
     },
     "Quotation": {
-        "validate": "custom_app.doc_events.quotation.validate"
+        "validate": "custom_app.doc_events.quotation.validate",
+        "before_insert" : "custom_app.doc_events.quotation.before_insert"
     }
 }
 
