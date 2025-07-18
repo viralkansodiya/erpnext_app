@@ -13,7 +13,6 @@ def validate(doc, method):
     for row in doc.items:
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
             row.rate = total_amount * flt(row.percentage) / 100
-    doc.validate()
 
 def apply_item_tax_template(doc):
     max_tax = 0
