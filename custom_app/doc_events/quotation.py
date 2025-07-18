@@ -18,7 +18,7 @@ def apply_item_tax_template(doc):
     max_tax = 0
     max_tax_template = None
     for row in doc.items:
-        if not frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
+        if not frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item') and row.item_tax_template:
             applied_tax = row.igst_rate + row.cgst_rate + row.sgst_rate
             if applied_tax > max_tax:
                 max_tax = applied_tax
