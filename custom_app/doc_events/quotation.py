@@ -8,7 +8,7 @@ def before_save(doc, method):
     for row in doc.items:
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
             continue
-        total_amount += (row.get("qty") * row.get("price_list_rate"))
+        total_amount += (row.get("qty") * row.get("price_list_rate")) if row.get("price_list_rate") else (row.get("qty") * row.get("rate"))
     
     for row in doc.items:
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
@@ -41,7 +41,7 @@ def get_service_item_rate(doc, percentage, item_code):
     for row in doc.get("items"):
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
             continue
-        total_amount += (row.get("qty") * row.get("price_list_rate"))
+        total_amount += (row.get("qty") * row.get("price_list_rate")) if row.get("price_list_rate") else (row.get("qty") * row.get("rate"))
 
     return total_amount * flt(percentage) / 100
     
@@ -67,7 +67,7 @@ def before_insert(doc, method):
     for row in doc.items:
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):
             continue
-        total_amount += (row.get("qty") * row.get("price_list_rate"))
+        total_amount += (row.get("qty") * row.get("price_list_rate")) if row.get("price_list_rate") else (row.get("qty") * row.get("rate"))
     
     for row in doc.items:
         if frappe.db.get_value("Item", row.get("item_code"), 'additional_service_item'):

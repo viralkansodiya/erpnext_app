@@ -29,6 +29,7 @@ frappe.ui.form.on("Quotation Item", {
 })
 function calculate_service_item_rate(frm, cdt, cdn){
     let d = locals[cdt][cdn]
+    if(!d.percentage) return;
     frappe.call({
         method: "custom_app.doc_events.quotation.get_service_item_rate",
         args : {
